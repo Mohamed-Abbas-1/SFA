@@ -1,0 +1,115 @@
+﻿@model SFA.ViewModels.JopFormsViewModel
+    @{
+        ViewBag.Title = "EditJop";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <!-- update -->
+    <section class="g-bg-gray-light-v5" style="margin-top: 80px;">
+        <div class="container g-py-100">
+            <div class="row justify-content-center">
+                <div class="col-sm-8 col-lg-5">
+                    <div class="u-shadow-v21 g-bg-white rounded g-py-40 g-px-30">
+                        <header class="text-center mb-4">
+                            <h2 class="h2 g-color-black g-font-weight-600">update job</h2>
+                        </header>
+
+                        <!-- new job Form -->
+                        @using (Html.BeginForm("Update", "Jop"))
+                        {
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="jop_Title" style="font-size: 15px;">Job Title:</label>
+                                    @Html.TextBoxFor(j => j.jop.Title, new { @class = "form-control", @placeholder = "Jop name" })
+                                    @Html.ValidationMessageFor(j => j.jop.Title, null, new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col">
+                                    <label for="jop_CompanyName" style="font-size: 15px;">company Name:</label>
+                                    @Html.TextBoxFor(j => j.jop.CompanyName, new { @class = "form-control", @placeholder = "Company name" })
+                                    @Html.ValidationMessageFor(j => j.jop.CompanyName, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="jop_Email" style="font-size: 15px;">Send CV AT Email:</label>
+                                    @Html.TextBoxFor(j => j.jop.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(j => j.jop.Email, null, new { @class = "text-danger" })
+                                </div>
+
+
+                                <div class="col">
+                                    <label for="jop_Watsapp" style="font-size: 15px;">Send CV AT WatsApp:</label>
+                                    @Html.TextBoxFor(j => j.jop.Watsapp, new { @class = "form-control", @placeholder = "WatsApp" })
+                                    @Html.ValidationMessageFor(j => j.jop.Watsapp, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="jop_Salary" style="font-size: 15px;">salary:</label>
+                                    @Html.TextBoxFor(j => j.jop.Salary, new { @class = "form-control", @placeholder = "Salary" })
+                                    @Html.ValidationMessageFor(j => j.jop.Salary, null, new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="jop_CareerId" style="font-size: 15px;">carrer:</label>
+                                    @Html.DropDownListFor(j => j.jop.CareerId, new SelectList(Model.Careers, "Id", "Name"), "Select Career Type...", new { @class = "form-control custom-select" })
+                                    @Html.ValidationMessageFor(j => j.jop.CareerId, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="jop_ExperienceId" style="font-size: 15px;">Experience:</label>
+                                    @Html.DropDownListFor(j => j.jop.ExperienceId, new SelectList(Model.Experiences, "Id", "TotalName"), "Select Experience...", new { @class = "form-control custom-select" })
+                                    @Html.ValidationMessageFor(j => j.jop.ExperienceId, null, new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="jop_LocationId" style="font-size: 15px;">location:</label>
+                                    @Html.DropDownListFor(j => j.jop.LocationId, new SelectList(Model.Locations, "Id", "Name"), "Select Location...", new { @class = "form-control custom-select" })
+                                    @Html.ValidationMessageFor(j => j.jop.LocationId, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <label class="my-1 mr-2" for="jop_JopType" style="font-size: 15px;">job type:</label>
+                            @Html.DropDownListFor(j => j.jop.JopType, new SelectList(new List<SelectListItem>
+                        {
+                        new SelectListItem {Text = "Part Time" , Value = "Part Time"},
+                        new SelectListItem {Text = "Full Time" , Value = "Full Time"},
+                        new SelectListItem {Text = "Free Lance" , Value = "Free Lance"},
+                        new SelectListItem {Text = "InternShip" , Value = "InternShip"}
+                        }, "Value", "Text"), "Select Jop Type...", new { @class = "form-control custom-select" })
+                            @Html.ValidationMessageFor(j => j.jop.JopType, null, new { @class = "text-danger" })
+                            <div class="g-mb-40">
+                                <label for="jop_Details" class="my-1 mr-2" style="font-size: 15px;">Details:</label>
+                                @Html.TextAreaFor(j => j.jop.Details, new { @class = "form-control g-color-gray-dark-v5 g-bg-white g-bg-white--focus g-brd-primary--focus g-brd-gray-light-v4 g-resize-none rounded-3 g-py-13 g-px-15", @placeholder = "Jop Details....", @rows = "7" })
+                                @Html.ValidationMessageFor(j => j.jop.Details, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    @Html.HiddenFor(j => j.jop.Id)
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-primary" style="text-align: center; width: 100%;">Update</button>
+                                </div>
+                                <div class="col-6">
+                                    @Html.ActionLink("Cancel", "JopIn", "Home", null, new { @class = "btn btn-primary", @style = "text-align: center; width: 100%;" })
+                                </div>
+                            </div>
+                        }
+                        <!-- End new job Form -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Login -->

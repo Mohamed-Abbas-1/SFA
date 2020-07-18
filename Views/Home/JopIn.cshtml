@@ -1,0 +1,856 @@
+﻿@using SFA.Models;
+@model SFA.ViewModels.JopFormsViewModel
+@{
+    ViewBag.Title = "JopIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc; //import this so we get our HTML Helper
+@using PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
+
+
+<!-- Promo Block -->
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall " data-options='{direction: "fromtop", animation_duration: 25, direction: "reverse"}' style="margin-top: 100px;">
+    <!-- Parallax Image -->
+    <div class="dzsparallaxer--target w-100 g-bg-img-hero g-bg-white-opacity-0_8--after" style="height: 200%; background-image: url(../../assets/img12.jpg);"></div>
+    <!-- End Parallax Image -->
+    <!-- Promo Block Content -->
+    <div class="container u-bg-overlay__inner text-center g-py-130">
+        <p class="g-color-black g-font-weight-600 g-font-size-35 text-uppercase">Welcome to Job IN</p>
+    </div>
+    <!-- Promo Block Content -->
+</section>
+<!-- End Promo Block -->
+<!-- Icon Blocks -->
+<section class="g-pos-rel g-overflow-hidden">
+    <div class="container g-pt-100 g-pb-50">
+        <div class="row justify-content-between">
+            <div class="col-lg-5 g-mb-50">
+                <!-- Heading -->
+                <div class="text-center text-lg-left g-mb-60">
+                    <img class="img-fluid" src="~/assets/jobin1.png" alt="Image Description">
+                    <img class="img-fluid" src="~/assets/about1.png" alt="Image Description">
+
+                </div>
+                <!-- End Heading -->
+            </div>
+
+            <div class="col-lg-6">
+                <!-- Icon Blocks -->
+                <div class="row">
+                    <div class="col-sm-6 text-center text-lg-left g-mb-50">
+                        <!-- Icon Blocks -->
+                        <span class="d-inline-block g-color-primary g-font-size-30 g-rounded-5 mb-2">
+                            <i class="icon-education-087 u-line-icon-pro"></i>
+                        </span>
+                        <h3 class="h5 g-color-black g-font-weight-600 mb-2">Workforce needs</h3>
+                        <p class="mb-0">We strive to embrace and drive change in our industry.</p>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-sm-6 text-center text-lg-left g-mb-50">
+                        <!-- Icon Blocks -->
+                        <span class="d-inline-block g-color-primary g-font-size-30 g-rounded-5 mb-2">
+                            <i class="icon-education-035 u-line-icon-pro"></i>
+                        </span>
+                        <h3 class="h5 g-color-black g-font-weight-600 mb-2">Job analysis</h3>
+                        <p class="mb-0">We strive to embrace and drive change in our industry.</p>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-sm-6 text-center text-lg-left g-mb-50">
+                        <!-- Icon Blocks -->
+                        <span class="d-inline-block g-color-primary g-font-size-30 g-rounded-5 mb-2">
+                            <i class="icon-education-141 u-line-icon-pro"></i>
+                        </span>
+                        <h3 class="h5 g-color-black g-font-weight-600 mb-2">Salary Survey</h3>
+                        <p class="mb-0">We strive to embrace and drive change in our industry.</p>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-sm-6 text-center text-lg-left g-mb-50">
+                        <!-- Icon Blocks -->
+                        <span class="d-inline-block g-color-primary g-font-size-30 g-rounded-5 mb-2">
+                            <i class="icon-finance-256 u-line-icon-pro"></i>
+                        </span>
+                        <h3 class="h5 g-color-black g-font-weight-600 mb-2">Talents Acquisition</h3>
+                        <p class="mb-0">We strive to embrace and drive change in our industry.</p>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-sm-6 text-center text-lg-left g-mb-50">
+                        <!-- Icon Blocks -->
+                        <span class="d-inline-block g-color-primary g-font-size-30 g-rounded-5 mb-2">
+                            <i class="icon-finance-256 u-line-icon-pro"></i>
+                        </span>
+                        <h3 class="h5 g-color-black g-font-weight-600 mb-2">Interview Assess</h3>
+                        <p class="mb-0">We strive to embrace and drive change in our industry.</p>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-sm-6 text-center text-lg-left g-mb-50">
+                        <!-- Icon Blocks -->
+                        <span class="d-inline-block g-color-primary g-font-size-30 g-rounded-5 mb-2">
+                            <i class="icon-finance-256 u-line-icon-pro"></i>
+                        </span>
+                        <h3 class="h5 g-color-black g-font-weight-600 mb-2">Candidates Selection</h3>
+                        <p class="mb-0">We strive to embrace and drive change in our industry.</p>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-sm-6 text-center text-lg-left g-mb-50">
+                        <!-- Icon Blocks -->
+                        <span class="d-inline-block g-color-primary g-font-size-30 g-rounded-5 mb-2">
+                            <i class="icon-finance-256 u-line-icon-pro"></i>
+                        </span>
+                        <h3 class="h5 g-color-black g-font-weight-600 mb-2"> Job offer</h3>
+                        <p class="mb-0">We strive to embrace and drive change in our industry.</p>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-sm-6 text-center text-lg-left g-mb-50">
+                        <!-- Icon Blocks -->
+                        <span class="d-inline-block g-color-primary g-font-size-30 g-rounded-5 mb-2">
+                            <i class="icon-finance-256 u-line-icon-pro"></i>
+                        </span>
+                        <h3 class="h5 g-color-black g-font-weight-600 mb-2">Job On-board</h3>
+                        <p class="mb-0">We strive to embrace and drive change in our industry.</p>
+                        <!-- End Icon Blocks -->
+                    </div>
+                </div>
+                <!-- End Icon Blocks -->
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!-- End Icon Blocks -->
+<!--jobs start-->
+<!-- Recent Jobs -->
+<section class="g-py-100">
+    <div class="container">
+        <header class="text-center g-width-60x--md mx-auto g-mb-50">
+            <h2 class="h1 g-color-gray-dark-v1 g-font-weight-300" id="jOPS">Jobs</h2>
+            <p class="lead">Welcome to our job board</p>
+        </header>
+        @*<div class="row g-mb-30">
+
+            <div class="col-lg-6 g-mb-30 g-mb-0--lg">
+                <form class="g-brd-gray-light-v4 g-pa-30 g-mb-30">
+                     Inline Forms
+
+                    <div class="form-inline">
+
+                        <input type="text" class="form-control rounded-0 form-control-md mr-sm-3 mb-3 mb-lg-0" id="search" placeholder="search">
+
+
+                        <button type="submit" class="btn btn-md u-btn-primary rounded-0">search for Jobs</button>
+                    </div>
+                </form>
+                 End Inline Forms
+            </div>
+
+
+
+            <div class="col-lg-3 g-mb-30 g-mb-0--lg">
+                 Level of Study
+                <form class="g-brd-gray-light-v4 g-pa-30 g-mb-30">
+                    <select class="form-control form-control-md rounded-0 g-mb-25">
+                        <option>carrer</option>
+                        <option value="1">Value One</option>
+                        <option value="3">Value Two</option>
+                        <option value="3">Value Three</option>
+                    </select>
+                </form>
+            </div>
+
+
+
+            <div class="col-lg-3 g-mb-30 g-mb-0--lg">
+
+                <form class="g-brd-gray-light-v4 g-pa-30 g-mb-30">
+                    <select class="form-control form-control-md rounded-0 g-mb-25">
+                        <option>Location</option>
+                        @foreach (var location in Model.Locations)
+                        {
+                            <option value="@location.Id">@location.Name</option>
+                        }
+                    </select>
+                </form>
+            </div>
+
+
+        </div>*@
+        <div class="row g-pa-30 " style="margin-bottom:-40px">
+            <a class="btn btn-md btn-danger rounded-6 ml-3 mb-3 " href="../Home/JopIn?reset=true">Reset Search</a>
+        </div>
+        <div class="row form-inline g-brd-gray-light-v4 g-pa-30 g-mb-30" style="">
+            @using (Html.BeginForm("JopIn", "Home"))
+            {
+
+                <select class="form-control form-control-md rounded-6 ml-3 mb-3" name="location">
+                    <option>Location </option>
+                    @foreach (var location in Model.Locations)
+                    {
+                        <option href="../Home/JopIn?location=@location.Id" value="@location.Id">@location.Name</option>
+                    }
+                </select>
+                <select class="form-control form-control-md rounded-6 ml-3 mb-3" name="career">
+                    <option>carrer</option>
+                    @foreach (var career in Model.Careers)
+                    {
+                        <option value="@career.Id">@career.Name</option>
+                    }
+                </select>
+                <select class="form-control form-control-md rounded-6 ml-3 mb-3" name="experience">
+                    <option>Experiences</option>
+                    @foreach (var experience in Model.Experiences)
+                    {
+                        <option value="@experience.Id">@experience.TotalName</option>
+                    }
+                </select>
+
+                <select class="form-control form-control-md rounded-6 ml-3 mb-3" name="jopType">
+                    <option value="">Jop Type</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Free Lance">Free Lance</option>
+                    <option value="InternShip">InternShip</option>
+                </select>
+                <select class="form-control form-control-md rounded-6 ml-3 mb-3" name="datePosted">
+                    <option value="">Date Posted</option>
+                    <option value="Last 24 Hours">Last 24 Hours</option>
+                    <option value="One Week">One Week</option>
+                    <option value="One Month">One Month</option>
+                    <option value="All">All</option>
+                </select>
+                <input type="text" class="form-control rounded-6 form-control-md mr-sm-3   ml-3 mb-3" id="search" placeholder="search" name="serach">
+                <button type="submit" class="btn btn-md u-btn-primary rounded-6 mb-3">search</button>
+            }
+
+        </div>
+        @if (ViewBag.stringLocation != null || ViewBag.stringCareer != null || ViewBag.stringExperience != null || ViewBag.jopType != null || ViewBag.datePosted != null || ViewBag.serach != null)
+        {
+            ViewBag.SearchDetails = "Location = " + '"' + ViewBag.stringLocation + '"' + " - " + "Career = " + '"' + ViewBag.stringCareer + '"' + " - " + "Experience = " + '"' + ViewBag.stringExperience + '"' + " - " + "Jop Type = " + '"' + ViewBag.jopType + '"' + " - " + "Search with word = " + '"' + ViewBag.serach + '"' + " - " + "Date Posted = " + '"' + ViewBag.datePosted + '"' + " . ";
+            <h2>Search Details: @ViewBag.SearchDetails</h2>
+            <br />
+            <h3 id="count">Search Result: @ViewBag.JopsCount Jops</h3>
+
+        }
+        else
+        {
+           <h3 id="count2">Jops for Now: @ViewBag.JopsCount Jops</h3>
+        }
+
+        <!--Jops Section-->
+        <div class="row g-mb-30 " id="jop">
+            @foreach (var jopDetails in Model.Jops)
+            {
+                <div class="col-lg-4 g-mb-30 g-mb-0--lg">
+                    <!-- Recent Jobs -->
+                    <article class="u-shadow-v11 rounded g-pa-25" style="height: 480px;">
+
+                        <ul class="list-inline d-flex justify-content-between g-mb-15">
+                            <li class="list-inline-item">
+                                @if (jopDetails.JopType != null)
+                                {
+                                    <a class="u-tags-v1 g-font-size-12 g-color-main g-brd-around g-brd-gray-light-v3 g-bg-gray-dark-v2--hover g-brd-gray-dark-v2--hover g-color-white--hover rounded g-py-3 g-px-8" href="#">@jopDetails.JopType</a>
+                                }
+                            </li>
+                            @if (jopDetails.LastUpdated != null)
+                            {
+                                <li class="list-inline-item">
+                                    <span class="media-body" style="font-size: 12px;">Updated <time class="timeago" datetime="@jopDetails.LastUpdated">@jopDetails.LastUpdated</time></span>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="list-inline-item">
+                                    <span class="media-body" style="font-size: 12px;"><time class="timeago" datetime="@jopDetails.AnnouncedDate">@jopDetails.AnnouncedDate</time></span>
+                                </li>
+                            }
+                        </ul>
+                        <div class="comments">
+                            <h2 class="h4 g-mb-15">
+                                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover">@jopDetails.Title</a>
+                            </h2>
+                            <ul>
+                                <li class="list-inline-item g-mr-20">
+                                    <a class="u-link-v5 g-color-main g-color-primary--hover" style="font-size: 15px;" href="#">@jopDetails.CompanyName</a>
+                                </li>
+                            </ul>
+
+                            <p class="g-mb-15" style="font-size: 15px;">@jopDetails.Details</p>
+
+                            <ul class="list-unstyled">
+                                @if (jopDetails.Salary != null)
+                                {
+                                    <li class="media g-mb-10" style="font-size: 15px;">
+                                        <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                            <i class="icon-wallet g-pos-rel g-top-1 g-mr-5"></i> Sallery:
+                                        </span>
+                                        <span class="media-body">@jopDetails.Salary</span>
+                                    </li>
+                                }
+
+                                @if (jopDetails.CareerId != null)
+                                {
+                                    <li class="media g-mb-10" style="font-size: 15px;">
+                                        <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                            <i class="fa fa-briefcase g-pos-rel g-top-1 g-mr-5" aria-hidden="true"></i> carrer:
+                                        </span>
+                                        <span class="media-body">@Html.DisplayFor(modelItem => jopDetails.Career.Name)</span>
+                                    </li>
+                                }
+
+                                @if (jopDetails.ExperienceId != null)
+                                {
+                                    <li class="media g-mb-10" style="font-size: 15px;">
+                                        <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                            <i class="icon-wallet g-pos-rel g-top-1 g-mr-5"></i> Experience:
+                                        </span>
+                                        <span class="media-body">@Html.DisplayFor(modelItem => jopDetails.Experience.TotalName)</span>
+                                    </li>
+                                }
+
+                                @if (jopDetails.LocationId != null)
+                                {
+                                    <li class="media g-mb-10" style="font-size: 15px;">
+                                        <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                            <i class="fa fa-map-marker g-pos-rel g-top-1 g-mr-5" aria-hidden="true"></i> location:
+                                        </span>
+                                        <span class="media-body">@Html.DisplayFor(modelItem => jopDetails.Location.Name)</span>
+                                    </li>
+                                }
+
+                                @if (jopDetails.Email != null)
+                                {
+                                    <li class="media g-mb-10" style="font-size: 15px;">
+                                        <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                            <i class="fa fa-paper-plane g-pos-rel g-top-1 g-mr-5"></i> send CV:
+                                        </span>
+                                        <span class="media-body"><a href="mailto:@jopDetails.Email" style="color: black; font-weight: bold;"> @jopDetails.Email</a></span>
+                                    </li>
+                                }
+                                @if (jopDetails.Watsapp != null)
+                                {
+                                    <li class="media g-mb-10" style="font-size: 15px;">
+                                        <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                            <i class="fa fa-whatsapp g-pos-rel g-top-1 g-mr-5"></i> send CV:
+                                        </span>
+                                        <span class="media-body"><a style="color: black; font-weight: bold;"> @jopDetails.Watsapp </a></span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <hr class="g-brd-gray-light-v4">
+
+                        <ul class="list-inline d-flex justify-content-between mb-0">
+                            @if (User.IsInRole(RoleName.CanManageSite))
+                            {
+
+                                <li class="list-inline-item">
+                                    <button class="btn btn-md u-btn-3d u-btn-red g-mr-10 g-mb-15 js-delete" data-content-id="@jopDetails.Id">Delete</button>
+
+                                </li>
+
+                                <li class="list-inline-item">
+                                    <a href="../Jop/EditJop/@jopDetails.Id" class="btn btn-md u-btn-3d u-btn-primary g-mr-10 g-mb-15" style="background-color: #72c02c;">Update</a>
+
+                                </li>
+                            }
+                            else
+                            {
+
+                                <li style=" padding:10px 10px 15px 0px;border-right:1px solid #ccc">Share using</li>
+                                <li style="margin-top:0px"><a class="btn btn-primary" style="color:white" href="https://www.facebook.com/sharer/sharer.php?u=https://localhost:44344/Jop/JopInfo/@jopDetails.Id" target="_blank">Facbook</a></li>
+                                <li style="margin-top:0px"><a class="btn btn-success" style="color:white" href="https://api.watsapp.com/send?text=https://localhost:44344/Jop/JopInfo/@jopDetails.Id" data-action="share/watsapp/share" target="_blank">Watsapp</a></li>
+                                <li style="margin-top:0px"><a class="btn btn-primary" style="color:white" href="https://www.linkedin.com/shareArticle?mini=true&url=https://localhost:44344/Jop/JopInfo/@jopDetails.Id" target="_blank">LinkedIn</a></li>
+
+                            }
+                        </ul>
+                            
+
+                              
+                    </article>
+                    <!-- End Recent Jobs -->
+                </div>
+            }
+
+        </div>
+        <!--End of Jops Section-->
+        <!-- Pagination #08 -->
+        <nav class="text-center" id="jopsPaged" aria-label="Page Navigation">
+            <ul class="list-inline">
+                <div id="contentPager">
+                    @Html.PagedListPager((IPagedList)Model.Jops, page => Url.Action("JopIn", new { page = page }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< First", LinkToPreviousPageFormat = "< Pervious", LinkToNextPageFormat = "Next >", LinkToLastPageFormat = "Last >>" })
+                </div>
+            </ul>
+        </nav>
+        <!-- End Pagination #08 -->
+        @if (User.IsInRole(RoleName.CanManageSite))
+        {
+
+        <a class="btn btn-md u-btn-3d u-btn-cyan g-mr-10 g-mb-15" href="#modal9" data-modal-target="#modal9" data-modal-effect="superscaled" style="float: right;">Add new job</a>
+        <a class="btn btn-md u-btn-3d u-btn-cyan g-mr-10 g-mb-15" href="../location/index" style="float: right;">Add/Update Location</a>
+        <a class="btn btn-md u-btn-3d u-btn-cyan g-mr-10 g-mb-15" href="../Career/index" style="float: right;">Add/Update Carrer</a>
+        <a class="btn btn-md u-btn-3d u-btn-cyan g-mr-10 g-mb-15" href="../Experience/index" style="float: right;">Add/Update Exprience</a>
+        }
+
+    </div>
+</section>
+<!-- End Recent Jobs -->
+<!--jobs End-->
+<!-- Applications-->
+<section class="container g-pt-100 g-pb-40" id="Application">
+    <div class="row ">
+        <div class="col-lg-8 g-mb-60">
+            <h2 class="h3" style="text-align: center;">Fill the application</h2>
+            <p class="g-color-gray-dark-v3 g-font-size-16" style="text-align: center;"> Join US </p>
+
+            <hr class="g-my-40">
+
+
+
+            @using (@Html.BeginForm("FillTheApplication", "Home", FormMethod.Post, new { @id = "form3", @enctype = "multipart/form-data", @style = "font-size: 1.2rem;" }))
+
+            {
+                <div class="form-row">
+                    <div class="col">
+                        <label for="First-Name">First Name: <span class="g-color-red">*</span></label>
+                        <input type="text" id="First-Name" class="form-control" placeholder="First name" name="fName" required="required">
+                    </div>
+                    <div class="col">
+                        <label for="Last-Name">Last Name: <span class="g-color-red">*</span>  </label>
+                        <input type="text" id="Last-Name" class="form-control" placeholder="Last name" name="lName" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Age">Your Age: <span class="g-color-red">*</span></label>
+                    <input type="text" class="form-control" id="Age" placeholder="postion" name="age" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email: <span class="g-color-red">*</span></label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="SFA@gmail.com" name="email" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="Mobile">Mobile NO: <span class="g-color-red">*</span></label>
+                    <input type="text" class="form-control" id="Mobile" placeholder="NO." name="mobile" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="Last-Job">Last Job Title, and Work Location: <span class="g-color-red">*</span></label>
+                    <input type="text" class="form-control" id="Last-Job" placeholder="company Name" name="cName" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Address: <span class="g-color-red">*</span></label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" required="required">
+                </div>
+
+
+                <h4 class="h6 g-font-weight-700 g-mb-20" style="margin-top: 30px; font-size: 20px;">Gender: <span class="g-color-red">*</span></h4>
+                <div class="row g-mb-30">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="form-group g-mb-10">
+                            <label class="u-check g-pl-25">
+                                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="gender" type="radio" value="Male">
+                                <div class="u-check-icon-font g-absolute-centered--y g-left-0">
+                                    <i class="fa" data-check-icon="" data-uncheck-icon=""></i>
+                                </div>
+                                Male
+                            </label>
+                        </div>
+
+                        <div class="form-group g-mb-10">
+                            <label class="u-check g-pl-25">
+                                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="gender" type="radio" value="Female">
+                                <div class="u-check-icon-font g-absolute-centered--y g-left-0">
+                                    <i class="fa" data-check-icon="" data-uncheck-icon=""></i>
+                                </div>
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Left Column -->
+                <div class="form-group">
+                    <label for="Certification">Certification and Courses: <span class="g-color-red">*</span></label>
+                    <input type="text" class="form-control" id="Certification" placeholder="your answer" name="cources" required="required">
+                </div>
+
+                <div class="form-group">
+                    <label for="Software-skills">Software skills: <span class="g-color-red">*</span></label>
+                    <input type="text" class="form-control" id="Software-skills" placeholder="your answer" name="skills" required="required">
+                </div>
+
+                <div class="form-group">
+                    <label for="Expected-Salary">Expected Salary In L.E: <span class="g-color-red">*</span></label>
+                    <input type="text" class="form-control" id="Expected-Salary" placeholder="your answer" name="salary" required="required">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Job type: <span class="g-color-red">*</span></label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="jopType">
+                        <option selected>Choose Jop Type...</option>
+                        <option value="Full-Time">Full-Time </option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Projects or Free-lancer">Projects or Free-lancer</option>
+                        <option value="Trainee or Internship">Trainee or Internship</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Your City:  <span class="g-color-red">*</span></label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="city">
+                        <option selected>Choose City...</option>
+                        <option value="Cairo">Cairo </option>
+                        <option value="Giza">Giza</option>
+                        <option value="New Cairo">New Cairo</option>
+                        <option value="El- Obour, El-Shorouk, and Badr City">El- Obour, El-Shorouk, and Badr City</option>
+                        <option value="Helwan">Helwan</option>
+                        <option value="Qalubia">Qalubia</option>
+                        <option value="10th of Ramadan">10th of Ramadan</option>
+                        <option value="6th October">6th October</option>
+                        <option value="Alexandria">Alexandria</option>
+                        <option value="other">other</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Career Experience:  <span class="g-color-red">*</span></label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="careerExp">
+                        <option selected>Choose Career Experience...</option>
+                        <option value="Student or Internship">Student or Internship </option>
+                        <option value="Trainee or Fresh 0-6 Months">Trainee or Fresh 0-6 Months</option>
+                        <option value="Fresh 6-12 Months">Fresh 6-12 Months</option>
+                        <option value="1-2 Years">1-2 Years</option>
+                        <option value="2-4 Years">2-4 Years</option>
+                        <option value="4-6 Years">4-6 Years </option>
+                        <option value="6-8 Years">6-8 Years</option>
+                        <option value="8-10 Years">8-10 Years</option>
+                        <option value="10-15 Years">10-15 Years </option>
+                        <option value="More than 15 Years">More than 15 Years</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Career:  <span class="g-color-red">*</span></label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="career">
+                        <option selected>Choose Career...</option>
+                        <option value="Sales Indoor, Tele. Sales">Sales Indoor, Tele. Sales </option>
+                        <option value="Sales Outdoor and Distributions">Sales Outdoor and Distributions</option>
+                        <option value="Marketing and Advertising">Marketing and Advertising</option>
+                        <option value="Custom Services or Public Relation">Custom Services or Public Relation</option>
+                        <option value="Media Designs and Innovations">Media Designs and Innovations</option>
+                        <option value="Media and Websites Journalism">Media and Websites Journalism </option>
+                        <option value="IT Software Development">IT Software Development</option>
+                        <option value="IT Hardware and Servers">IT Hardware and Servers</option>
+                        <option value="Civil Engineering, and Real estate Career">Civil Engineering, and Real estate Career </option>
+                        <option value="Mechanics, Electric Engineering">Mechanics, Electric Engineering</option>
+                        <option value="Fashion, Textile, Designs Engineering">Fashion, Textile, Designs Engineering</option>
+                        <option value="Clearance, Logistics and Merchandising">Clearance, Logistics and Merchandising</option>
+                        <option value="Purchasing, Supply Chains">Purchasing, Supply Chains</option>
+                        <option value="Officer, Administrations, GM Assist">Officer, Administrations, GM Assist</option>
+                        <option value="Recruiting, Human Resources and Personnel">Recruiting, Human Resources and Personnel</option>
+                        <option value="Lawyer and Legal Affairs">Lawyer and Legal Affairs</option>
+                        <option value="Finance And Accounting">Finance And Accounting</option>
+                        <option value="Warehouse, Inventory">Warehouse, Inventory</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- File Input -->
+
+                <div class="form-group">
+                    <label class="g-mb-10" for="inputGroup1_2">Upload your CV: <span class="g-color-red">*  (Note: File should be less than 2 MB.)</span></label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="fileUploader" required="required">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
+
+
+
+
+                <!-- End File Input -->
+
+
+
+
+
+                <center>   <button type="submit" class="btn btn-primary" style="justify-items: center; text-align: center; width: 60%; ">send your Application</button> </center>
+            }
+
+
+        </div>
+
+
+
+        <div class="col-lg-4 g-mb-60">
+            <h2 class="h3" style="text-align: center;">Salary Survey</h2>
+            <p class="g-color-gray-dark-v3 g-font-size-16" style="text-align: center;"> we are happy to serve you  </p>
+
+            <hr class="g-my-40">
+
+
+            @using (@Html.BeginForm("SalarySurvey", "Home", FormMethod.Post, new { @id = "form3", @enctype = "multipart/form-data", @style = "font-size: 1.2rem;" }))
+
+            {
+
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Years Experience:  <span class="g-color-red">*</span></label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="YearEXP">
+                        <option selected>Choose...</option>
+                        <option value="0-1 Year">0-1 Year</option>
+                        <option value="1-2 Years">1-2 Years</option>
+                        <option value="3-5 Years">3-5 Years </option>
+                        <option value="5-7 Years">5-7 Years</option>
+                        <option value="7-9 Years">7-9 Years</option>
+                        <option value="10-15 Years">10-15 Years </option>
+                        <option value="15-20 Years">15-20 Years</option>
+                        <option value="+20 Years">+20 Years</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Expected-Salary">Salary In L.E: <span class="g-color-red">*</span></label>
+
+                    <input type="text" class="form-control g-mb-15" id="Expected-Salary" placeholder="from" name="SalaryFrom" required="required">
+                    <input type="text" class="form-control" id="Expected-Salary" placeholder="to" name="SalaryTo" required="required">
+                </div>
+
+                <div class="form-group">
+                    <label for="Expected-Salary">Benefits: </label>
+                    <input type="text" class="form-control" id="Expected-Salary" placeholder="your answer" name="Benefits">
+                </div>
+
+                <div class="form-group">
+                    <label for="Expected-Salary">Note:</label>
+                    <input type="text" class="form-control" id="Expected-Salary" placeholder="your answer" name="Note">
+                </div>
+
+                <center>   <button type="submit" class="btn btn-primary" style="justify-items: center; text-align: center; width: 60%; ">send</button> </center>
+            }
+        </div>
+
+
+
+    </div>
+</section>
+
+
+
+<!-- Counters -->
+<section class="dzsparallaxer auto-init height-is-based-on-content">
+    <!-- Parallax Image -->
+    <div class="dzsparallaxer--target w-100" style="height: 140%; background: url(../../assets/img/pattern2.png)"></div>
+    <!-- End Parallax Image -->
+
+    <div class="container g-pos-rel g-z-index-1 g-pt-100 g-pb-70">
+        <div class="row text-center">
+            <div class="col-md-6 col-lg-3 g-mb-30">
+                <!-- Counters -->
+                <div class="u-shadow-v21 g-bg-white rounded g-px-20 g-py-30">
+                    <div class="js-counter g-color-primary g-font-weight-700 g-font-size-45 mb-1">15</div>
+                    <h4 class="h6 g-color-black g-font-weight-600 text-uppercase">open vacancies</h4>
+                </div>
+            </div>
+            <!-- End Counters -->
+
+            <div class="col-md-6 col-lg-3 g-mb-30">
+                <!-- Counters -->
+                <div class="u-shadow-v21 g-bg-white rounded g-px-20 g-py-30">
+                    <div class="js-counter g-color-primary g-font-weight-700 g-font-size-45 mb-1">5</div>
+                    <h4 class="h6 g-color-black g-font-weight-600 text-uppercase">Application sent</h4>
+                </div>
+            </div>
+            <!-- End Counters -->
+
+            <div class="col-md-6 col-lg-3 g-mb-30">
+                <!-- Counters -->
+                <div class="u-shadow-v21 g-bg-white rounded g-px-20 g-py-30">
+                    <div class="js-counter g-color-primary g-font-weight-700 g-font-size-45 mb-1">17</div>
+                    <h4 class="h6 g-color-black g-font-weight-600 text-uppercase">CV sent</h4>
+                </div>
+            </div>
+            <!-- End Counters -->
+
+            <div class="col-md-6 col-lg-3 g-mb-30">
+                <!-- Counters -->
+                <div class="u-shadow-v21 g-bg-white rounded g-px-20 g-py-30">
+                    <div class="js-counter g-color-primary g-font-weight-700 g-font-size-45 mb-1">22</div>
+                    <h4 class="h6 g-color-black g-font-weight-600 text-uppercase">Projects</h4>
+                </div>
+            </div>
+            <!-- End Counters -->
+        </div>
+    </div>
+</section>
+<!-- End Counters -->
+<!-- Add Jop modal window -->
+<div id="modal9" class="text-left g-max-width-600 g-bg-white g-overflow-y-auto g-pa-20" style="display: none;">
+    <button type="button" class="close" onclick="Custombox.modal.close();">
+        <i class="hs-icon hs-icon-close"></i>
+    </button>
+    <h4 class="g-mb-20" style="text-align: center;">Add new job</h4>
+
+
+    <!-- new job Form -->
+    @using (Html.BeginForm("Create", "Jop"))
+    {
+
+        <div class="form-row">
+            <div class="col">
+                <label for="jop_Title" style="font-size: 15px;">Job Title:</label>
+                @Html.TextBoxFor(j => j.jop.Title, new { @class = "form-control", @placeholder = "Jop name" })
+                @Html.ValidationMessageFor(j => j.jop.Title, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="col">
+                <label for="jop_CompanyName" style="font-size: 15px;">company Name:</label>
+                @Html.TextBoxFor(j => j.jop.CompanyName, new { @class = "form-control", @placeholder = "Company name" })
+                @Html.ValidationMessageFor(j => j.jop.CompanyName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <label for="jop_Email" style="font-size: 15px;">Send CV AT Email:</label>
+                @Html.TextBoxFor(j => j.jop.Email, new { @class = "form-control", @placeholder = "Email" })
+                @Html.ValidationMessageFor(j => j.jop.Email, null, new { @class = "text-danger" })
+            </div>
+
+
+            <div class="col">
+                <label for="jop_Watsapp" style="font-size: 15px;">Send CV AT WatsApp:</label>
+                @Html.TextBoxFor(j => j.jop.Watsapp, new { @class = "form-control", @placeholder = "WatsApp" })
+                @Html.ValidationMessageFor(j => j.jop.Watsapp, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <label for="jop_Salary" style="font-size: 15px;">salary:</label>
+                @Html.TextBoxFor(j => j.jop.Salary, new { @class = "form-control", @placeholder = "Salary" })
+                @Html.ValidationMessageFor(j => j.jop.Salary, null, new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <label for="jop_CareerId" style="font-size: 15px;">carrer:</label>
+                @Html.DropDownListFor(j => j.jop.CareerId, new SelectList(Model.Careers, "Id", "Name"), "Select Career Type...", new { @class = "form-control custom-select" })
+                @Html.ValidationMessageFor(j => j.jop.CareerId, null, new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="jop_ExperienceId" style="font-size: 15px;">Experience:</label>
+                @Html.DropDownListFor(j => j.jop.ExperienceId, new SelectList(Model.Experiences, "Id", "TotalName"), "Select Experience...", new { @class = "form-control custom-select" })
+                @Html.ValidationMessageFor(j => j.jop.ExperienceId, null, new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="jop_LocationId" style="font-size: 15px;">location:</label>
+
+                @Html.DropDownListFor(j => j.jop.LocationId, new SelectList(Model.Locations, "Id", "Name"), "Select Location...", new { @class = "form-control custom-select" })
+                @Html.ValidationMessageFor(j => j.jop.LocationId, null, new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <label class="my-1 mr-2" for="jop_JopType" style="font-size: 15px;">job type:</label>
+        @Html.DropDownListFor(j => j.jop.JopType, new SelectList(new List<SelectListItem>
+    {
+    new SelectListItem {Text = "Part Time" , Value = "Part Time"},
+    new SelectListItem {Text = "Full Time" , Value = "Full Time"},
+    new SelectListItem {Text = "Free Lance" , Value = "Free Lance"},
+    new SelectListItem {Text = "InternShip" , Value = "InternShip"}
+    }, "Value", "Text"), "Select Jop Type...", new { @class = "form-control custom-select" })
+        @Html.ValidationMessageFor(j => j.jop.JopType, null, new { @class = "text-danger" })
+        <div class="g-mb-40">
+            <label for="jop_Details" class="my-1 mr-2" style="font-size: 15px;">Details:</label>
+            @Html.TextAreaFor(j => j.jop.Details, new { @class = "form-control g-color-gray-dark-v5 g-bg-white g-bg-white--focus g-brd-primary--focus g-brd-gray-light-v4 g-resize-none rounded-3 g-py-13 g-px-15", @placeholder = "Jop Details....", @rows = "7" })
+            @Html.ValidationMessageFor(j => j.jop.Details, null, new { @class = "text-danger" })
+        </div>
+        @Html.HiddenFor(j => j.jop.Id)
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary" style="text-align: center; width: 100%;">Add</button>
+    }
+    <!-- End new job Form -->
+
+
+</div>
+<!-- Add Jop modal window -->
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        ///// MVC
+        $(document).ready(function () {
+            $("#jop").on("click", ".js-delete", function () {
+                var button = $(this);
+                Swal.fire({
+                    title: 'Are you sure you want to delete this Jop?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: "../Jop/Delete/" + button.attr("data-content-id"),
+                            success: function () {
+                                $("#jop").load(location.href + " #jop");
+                                $("#jopsPaged").load(location.href + " #jopsPaged");
+                                $("#count").load(location.href + " #count");
+                                $("#count2").load(location.href + " #count2");
+
+                                //button.parent("td").parent("tr").remove();
+                                Swal.fire(
+                                    'Successful Removed this Jop',
+                                    '',
+                                    'success'
+                                );
+                            },
+                            error: function () {
+                                Swal.fire(
+                                    'Opps...',
+                                    'Something went wrong please try again later!',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+
+                });
+            });
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery("abbr.timeago").timeago();
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery("time.timeago").timeago();
+        });
+    </script>
+}
+
+

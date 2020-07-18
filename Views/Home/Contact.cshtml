@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+
+<!-- Promo Block -->
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options='{direction: "fromtop", animation_duration: 25, direction: "reverse"}' style="margin-top: 100px;">
+    <!-- Parallax Image -->
+    <div class="divimage dzsparallaxer--target w-100 g-bg-cover g-bg-pos-center g-bg-black-opacity-0_2--after" style="height: 200%; background-image: url(../../assets/img12.jpg);"></div>
+    <!-- End Parallax Image -->
+    <!-- Promo Block Content -->
+    <div class="container g-color-white text-center g-py-150">
+        <h1 class="h2 g-font-weight-300">It is good to meet you</h1>
+        <h2 class="display-2 g-font-weight-600 text-uppercase g-letter-spacing-1 mb-0">Contact us</h2>
+    </div>
+    <!-- Promo Block Content -->
+</section>
+<!-- End Promo Block -->
+
+<section class="container g-pt-100 g-pb-40">
+    <div class="row justify-content-between">
+        <div class="col-lg-7 g-mb-60">
+            <h2 class="h3" style="text-align: center;">Contact us</h2>
+            <p class="g-color-gray-dark-v3 g-font-size-16" style="text-align: center;"> Get in touch please </p>
+
+            <hr class="g-my-40">
+
+            <!-- Contact Form -->
+            @using (@Html.BeginForm("ContactUs", "Home", FormMethod.Post, new { @id = "form3", @enctype = "multipart/form-data" }))
+
+            {
+                <div class="g-mb-20">
+                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">
+                        Your name: <span class="g-color-red">*</span>
+                    </label>
+                    <input class="form-control g-color-gray-dark-v5 g-bg-white g-bg-white--focus g-brd-primary--focus g-brd-gray-light-v4 rounded-3 g-py-13 g-px-15" type="text" name="name" required>
+                </div>
+
+                <div class="g-mb-20">
+                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">
+                        Your email: <span class="g-color-red">*</span>
+                    </label>
+                    <input class="form-control g-color-gray-dark-v5 g-bg-white g-bg-white--focus g-brd-primary--focus g-brd-gray-light-v4 rounded-3 g-py-13 g-px-15" type="email" name="email" required>
+                </div>
+
+                <div class="g-mb-40">
+                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">
+                        Your message: <span class="g-color-red">*</span>
+                    </label>
+                    <textarea class="form-control g-color-gray-dark-v5 g-bg-white g-bg-white--focus g-brd-primary--focus g-brd-gray-light-v4 g-resize-none rounded-3 g-py-13 g-px-15" rows="7" name="message" required></textarea>
+                </div>
+
+                <button class="btn btn-lg u-btn-primary g-font-weight-600 g-font-size-default rounded-3 text-uppercase g-py-15 g-px-30" type="submit" role="button">Send your message</button>
+            }
+                <!-- End Contact Form -->
+            </div>
+
+        <div class="col-lg-4 g-mb-60">
+            <!-- Google Map -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13810.17770290808!2d31.3132273!3d30.0785906!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdfc5b637eed9d773!2zU0ZBIEJ1c2luZXNzIENvbnN1bHRpbmcgYW5kIFNlcnZpY2VzIGNvINin2LMg2KfZgSDYp9mK2Ycg2YTZhNin2LPYqti02KfYsdin2Kog2KfZhNin2K_Yp9ix2YrYqSDZiNin2YTZhdin2YTZitip!5e0!3m2!1sen!2seg!4v1585915232661!5m2!1sen!2seg" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <!-- End Google Map -->
+
+            <hr class="g-my-40">
+
+            <h1 class="g-font-weight-300 mb-5">SFA Aliiance.</h1>
+
+            <div class="mb-4">
+                <h2 class="h5 g-color-gray-dark-v2 g-font-weight-600">Address:</h2>
+                <p class="g-color-gray-dark-v4 g-font-size-16">
+                    El-Obour Buildings (29),
+                    <br>Salah Salem St, Cairo
+                    <br>UBeside VAT authority building
+                </p>
+            </div>
+
+            <div class="mb-4">
+                <h2 class="h5 g-color-gray-dark-v2 g-font-weight-600">Email us:</h2>
+                <p class="g-color-gray-dark-v4" style="font-size: 13px;">
+                    Email: <a class="g-color-gray-dark-v2" href="mailto:sfa@sfa-bcs.com">sfa@sfa-bcs.com</a>
+                </p>
+            </div>
+
+            <div class="mb-3">
+                <h2 class="h5 g-color-gray-dark-v2 g-font-weight-600">Call us:</h2>
+                <p class="g-color-gray-dark-v4" style="font-size: 13px;">
+                    <span class="g-color-gray-dark-v2">+202 22639812</span>
+
+                </p>
+
+                <p class="g-color-gray-dark-v4" style="font-size: 13px;">
+                    <span class="g-color-gray-dark-v2">+201016155220</span>
+
+                </p>
+
+
+            </div>
+
+            <div class="mb-3">
+                <h2 class="h5 g-color-gray-dark-v2 g-font-weight-600">Whatsapp:</h2>
+
+                <p class="g-color-gray-dark-v4" style="font-size: 13px;">
+                    <span class="g-color-gray-dark-v2">+201016155220</span>
+                </p>
+            </div>
+
+            <div class="g-mb-30">
+                <p class="g-color-gray-dark-v5 g-font-weight-600 g-font-size-16">
+                    <em>sun-Th: 9 AM - 5 PM</em>
+                </p>
+            </div>
+
+            <!-- Figure Social Icons -->
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="u-icon-v1 g-color-gray-dark-v5 g-bg-gray-light-v5 g-color-white--hover g-bg-primary--hover rounded-circle" target="_blank" href="https://www.facebook.com/sfaalliance">
+                        <i class="g-font-size-default fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item g-mx-4">
+                    <a class="u-icon-v1 g-color-gray-dark-v5 g-bg-gray-light-v5 g-color-white--hover g-bg-primary--hover rounded-circle" target="_blank" href="https://twitter.com/SFA_alliance">
+                        <i class="g-font-size-default fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item g-mx-4">
+                    <a class="u-icon-v1 g-color-gray-dark-v5 g-bg-gray-light-v5 g-color-white--hover g-bg-primary--hover rounded-circle" target="_blank" href="https://www.linkedin.com/company/sfaalliance/">
+                        <i class="g-font-size-default fa fa-linkedin"></i>
+                    </a>
+                </li>
+            </ul>
+            <!-- End Figure Social Icons -->
+        </div>
+    </div>
+</section>

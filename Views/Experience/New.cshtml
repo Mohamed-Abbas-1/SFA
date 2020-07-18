@@ -1,0 +1,67 @@
+﻿@model SFA.Models.Experience
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="g-bg-gray-light-v5" style="margin-top: 80px;">
+    <div class="container g-py-100">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-lg-5">
+                <div class="u-shadow-v21 g-bg-white rounded g-py-40 g-px-30">
+                    <header class="text-center mb-4">
+                        <h2 class="h2 g-color-black g-font-weight-600">Add Experience</h2>
+                    </header>
+
+                    <!-- new Experience Form -->
+                    @using (Html.BeginForm("Add", "Experience"))
+                    {
+
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="jop_Title" style="font-size: 15px;">From:</label>
+                                @Html.TextBoxFor(l => l.From, new { @class = "form-control", @placeholder = "From",@type="number" })
+                                @Html.ValidationMessageFor(l => l.From, null, new { @class = "text-danger" })
+
+                                @Html.DropDownListFor(j => j.FromMonthOrYear, new SelectList(new List<SelectListItem>
+    {
+    new SelectListItem {Text = "Months" , Value = "Months"},
+    new SelectListItem {Text = "Years" , Value = "Years"}
+    }, "Value", "Text"), "Select Months/Years...", new { @class = "form-control custom-select" })
+                                @Html.ValidationMessageFor(j => j.FromMonthOrYear, null, new { @class = "text-danger" })
+
+                                <label for="jop_Title" style="font-size: 15px;">To:</label>
+                                @Html.TextBoxFor(l => l.To, new { @class = "form-control", @placeholder = "To",@type="number" })
+                                @Html.ValidationMessageFor(l => l.To, null, new { @class = "text-danger" })
+
+                                @Html.DropDownListFor(j => j.ToMonthOrYear, new SelectList(new List<SelectListItem>
+    {
+    new SelectListItem {Text = "Months" , Value = "Months"},
+    new SelectListItem {Text = "Years" , Value = "Years"}
+    }, "Value", "Text"), "Select Months/Years...", new { @class = "form-control custom-select" })
+                                @Html.ValidationMessageFor(j => j.ToMonthOrYear, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-6">
+                                @Html.HiddenFor(l => l.Id)
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-primary" style="text-align: center; width: 100%;">Add</button>
+                            </div>
+                            <div class="col-6">
+                                @Html.ActionLink("Cancel", "Index", "Experience", null, new { @class = "btn btn-primary", @style = "text-align: center; width: 100%;" })
+                            </div>
+                        </div>
+
+                        <!-- End Experience job Form -->
+
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

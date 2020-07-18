@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SFA.Models.Experience>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="g-bg-gray-light-v5" style="margin-top: 80px;">
+    <div class="container g-py-100">
+        <h2>Experience</h2>
+        @Html.ActionLink("New Experience", "New", "Experience", null, new { @class = "btn btn-primary", @style = "margin-bottom:10px;" })
+
+        <table class="table table-hover table-bordered" id="Experience">
+            <thead>
+                <tr>
+                    <th>Experience</th>
+                    <th>Number of jops</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var experience in Model)
+                {
+                    <tr>
+                        <td>@experience.TotalName</td>
+                        <td>
+                            @experience.Jops.Count() Jops<span style="float:right;">
+                                <a class="btn btn-primary" href="../Experience/EditExperience/@experience.Id">Edit</a> &nbsp;
+                                <button class='btn btn-danger js-delete' style="margin-left:10px;" data-content-id="@experience.Id">Delete</button>
+                            </span>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <br />
+        @Html.ActionLink("Back", "JopIn", "Home", null, new { @class = "btn btn-primary", @style = "margin-bottom:10px;" })
+
+    </div>
+</section>
+
+@section scripts
+    {
+
+    <script>
+        ///// MVC
+        $(document).ready(function () {
+            $("#Experience").on("click", ".js-delete", function () {
+                var button = $(this);
+                Swal.fire({
+                    title: 'Are you sure you want to delete this Experience Years?',
+                    text: "Any Jops with this Experience Years will be deleted also!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: "../Experience/Delete/" + button.attr("data-content-id"),
+                            success: function () {
+                                 $("#Experience").load(location.href + " #Experience");
+
+                                //button.parent("td").parent("tr").remove();
+                                Swal.fire(
+                                    'Successful Removed this Experience Years',
+                                    '',
+                                    'success'
+                                );
+                            },
+                            error: function () {
+                                 Swal.fire(
+                                    'Opps...',
+                                    'Something went wrong please try again later!',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+
+                });
+            });
+        });
+    </script>
+
+}

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SFA.Models.Location>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="g-bg-gray-light-v5" style="margin-top: 80px;">
+    <div class="container g-py-100">
+        <h2>Locations</h2>
+        @Html.ActionLink("New Location", "New", "Location", null, new { @class = "btn btn-primary", @style = "margin-bottom:10px;" })
+
+        <table class="table table-hover table-bordered" id="location">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Number of jops</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var location in Model)
+                {
+                    <tr>
+                        <td>@location.Name</td>
+                        <td>
+                            @location.Jops.Count() Jops<span style="float:right;">
+                                <a class="btn btn-primary" href="../Location/EditLocation/@location.Id">Edit</a> &nbsp;
+                                <button class='btn btn-danger js-delete' style="margin-left:10px;" data-content-id="@location.Id">Delete</button>
+                            </span>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <br />
+        @Html.ActionLink("Back", "JopIn", "Home", null, new { @class = "btn btn-primary", @style = "margin-bottom:10px;" })
+        
+    </div>
+</section>
+
+@section scripts
+    {
+
+    <script>
+        ///// MVC
+        $(document).ready(function () {
+            $("#location").on("click", ".js-delete", function () {
+                var button = $(this);
+                Swal.fire({
+                    title: 'Are you sure you want to delete this Location?',
+                    text: "Any Jops with this Location will be deleted also!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: "../Location/Delete/" + button.attr("data-content-id"),
+                            success: function () {
+                                 $("#location").load(location.href + " #location");
+
+                                //button.parent("td").parent("tr").remove();
+                                Swal.fire(
+                                    'Successful Removed this Location',
+                                    '',
+                                    'success'
+                                );
+                            },
+                            error: function () {
+                                 Swal.fire(
+                                    'Opps...',
+                                    'Something went wrong please try again later!',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+
+                });
+            });
+        });
+    </script>
+
+}

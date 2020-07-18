@@ -1,0 +1,134 @@
+﻿@model SFA.Models.Jop
+@{
+    ViewBag.Title = "JopInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+   
+<section class="" style="margin-top: 80px;">
+    <div class="container g-py-100">
+        <div>
+            @Html.ActionLink("See All Jops", "JopIn", "Home",null,new { @class="btn btn-primary"})
+        </div>
+        <!--Jops Section-->
+        <div class="row g-mb-30 " id="jop">
+
+            <div class="col-lg-4 g-mb-30 g-mb-0--lg" style="margin:auto">
+                <!-- Recent Jobs -->
+                <article class="u-shadow-v11 rounded g-pa-25" style="height: 480px;">
+
+                    <ul class="list-inline d-flex justify-content-between g-mb-15">
+                        <li class="list-inline-item">
+                            @if (Model.JopType != null)
+                            {
+                                <a class="u-tags-v1 g-font-size-12 g-color-main g-brd-around g-brd-gray-light-v3 g-bg-gray-dark-v2--hover g-brd-gray-dark-v2--hover g-color-white--hover rounded g-py-3 g-px-8" href="#">@Model.JopType</a>
+                            }
+                        </li>
+                        @if (Model.LastUpdated != null)
+                        {
+                            <li class="list-inline-item">
+                                <span class="media-body" style="font-size: 12px;">Updated <time class="timeago" datetime="@Model.LastUpdated">@Model.LastUpdated</time></span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="list-inline-item">
+                                <span class="media-body" style="font-size: 12px;"><time class="timeago" datetime="@Model.AnnouncedDate">@Model.AnnouncedDate</time></span>
+                            </li>
+                        }
+                    </ul>
+                    <div class="comments">
+                        <h2 class="h4 g-mb-15">
+                            <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover">@Model.Title</a>
+                        </h2>
+                        <ul>
+                            <li class="list-inline-item g-mr-20">
+                                <a class="u-link-v5 g-color-main g-color-primary--hover" style="font-size: 15px;" href="#">@Model.CompanyName</a>
+                            </li>
+                        </ul>
+
+                        <p class="g-mb-15" style="font-size: 15px;">@Model.Details</p>
+
+                        <ul class="list-unstyled">
+                            @if (Model.Salary != null)
+                            {
+                                <li class="media g-mb-10" style="font-size: 15px;">
+                                    <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                        <i class="icon-wallet g-pos-rel g-top-1 g-mr-5"></i> Sallery:
+                                    </span>
+                                    <span class="media-body">@Model.Salary</span>
+                                </li>
+                            }
+
+                            @if (Model.CareerId != null)
+                            {
+                                <li class="media g-mb-10" style="font-size: 15px;">
+                                    <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                        <i class="fa fa-briefcase g-pos-rel g-top-1 g-mr-5" aria-hidden="true"></i> carrer:
+                                    </span>
+                                    <span class="media-body">@Html.DisplayFor(modelItem => modelItem.Career.Name)</span>
+                                </li>
+                            }
+
+                            @if (Model.ExperienceId != null)
+                            {
+                                <li class="media g-mb-10" style="font-size: 15px;">
+                                    <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                        <i class="icon-wallet g-pos-rel g-top-1 g-mr-5"></i> Experience:
+                                    </span>
+                                    <span class="media-body">@Html.DisplayFor(modelItem => modelItem.Experience.TotalName)</span>
+                                </li>
+                            }
+
+                            @if (Model.LocationId != null)
+                            {
+                                <li class="media g-mb-10" style="font-size: 15px;">
+                                    <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                        <i class="fa fa-map-marker g-pos-rel g-top-1 g-mr-5" aria-hidden="true"></i> location:
+                                    </span>
+                                    <span class="media-body">@Html.DisplayFor(modelItem => modelItem.Location.Name)</span>
+                                </li>
+                            }
+
+                            @if (Model.Email != null)
+                            {
+                                <li class="media g-mb-10" style="font-size: 15px;">
+                                    <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                        <i class="fa fa-paper-plane g-pos-rel g-top-1 g-mr-5"></i> send CV:
+                                    </span>
+                                    <span class="media-body"><a href="mailto:@Model.Email" style="color: black; font-weight: bold;"> @Model.Email</a></span>
+                                </li>
+                            }
+                            @if (Model.Watsapp != null)
+                            {
+                                <li class="media g-mb-10" style="font-size: 15px;">
+                                    <span class="d-block g-color-gray-dark-v5 g-width-110">
+                                        <i class="fa fa-whatsapp g-pos-rel g-top-1 g-mr-5"></i> send CV:
+                                    </span>
+                                    <span class="media-body"><a style="color: black; font-weight: bold;"> @Model.Watsapp </a></span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <hr class="g-brd-gray-light-v4">
+
+                    <ul class="list-inline d-flex justify-content-between mb-0">
+                        <li style=" padding:10px 10px 15px 0px;border-right:1px solid #ccc">Share using</li>
+                        <li style="margin-top:0px"><a class="btn btn-primary" style="color:white" href="https://www.facebook.com/sharer/sharer.php?u=https://localhost:44344/Jop/JopInfo/@Model.Id" target="_blank">Facbook</a></li>
+                        <li style="margin-top:0px"><a class="btn btn-success" style="color:white" href="https://api.watsapp.com/send?text=https://localhost:44344/Jop/JopInfo/@Model.Id" data-action="share/watsapp/share" target="_blank">Watsapp</a></li>
+                        <li style="margin-top:0px"><a class="btn btn-primary" style="color:white" href="https://www.linkedin.com/shareArticle?mini=true&url=https://localhost:44344/Jop/JopInfo/@Model.Id" target="_blank">LinkedIn</a></li>
+
+                     
+                    </ul>
+                </article>
+                <!-- End Recent Jobs -->
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--End of Jops Section-->
+<li style="margin-top:0px"><a class="btn btn-primary" style="color:white" href="https://www.facebook.com/sharer/sharer.php?u=www.google.com" target="_blank">Facbook</a></li>
+
+<li style="margin-top:0px"><a class="btn btn-success" style="color:white" href="https://api.watsapp.com/send?text=www.google.com" data-action="share/watsapp/share" target="_blank">Watsapp</a></li>
+
+<li style="margin-top:0px"><a class="btn btn-success" style="color:white" href="https://wa.me/01069435619?text=www.google.com" data-action="share/watsapp/share" target="_blank">Watsapp</a></li>

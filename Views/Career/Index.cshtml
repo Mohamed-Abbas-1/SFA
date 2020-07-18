@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SFA.Models.Career>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="g-bg-gray-light-v5" style="margin-top: 80px;">
+    <div class="container g-py-100">
+        <h2>Carrers</h2>
+        @Html.ActionLink("New Career", "New", "Career", null, new { @class = "btn btn-primary", @style = "margin-bottom:10px;" })
+
+        <table class="table table-hover table-bordered" id="Career">
+            <thead>
+                <tr>
+                    <th>Career</th>
+                    <th>Number of jops</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var career in Model)
+                {
+                    <tr>
+                        <td>@career.Name</td>
+                        <td>
+                            @career.Jops.Count() Jops<span style="float:right;">
+                                <a class="btn btn-primary" href="../Career/EditCareer/@career.Id">Edit</a> &nbsp;
+                                <button class='btn btn-danger js-delete' style="margin-left:10px;" data-content-id="@career.Id">Delete</button>
+                            </span>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <br />
+        @Html.ActionLink("Back", "JopIn", "Home", null, new { @class = "btn btn-primary", @style = "margin-bottom:10px;" })
+
+    </div>
+</section>
+
+@section scripts
+    {
+
+    <script>
+        ///// MVC
+        $(document).ready(function () {
+            $("#Career").on("click", ".js-delete", function () {
+                var button = $(this);
+                Swal.fire({
+                    title: 'Are you sure you want to delete this Career?',
+                    text: "Any Jops with this Career will be deleted also!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: "../Career/Delete/" + button.attr("data-content-id"),
+                            success: function () {
+                                 $("#Career").load(location.href + " #Career");
+
+                                //button.parent("td").parent("tr").remove();
+                                Swal.fire(
+                                    'Successful Removed this Career',
+                                    '',
+                                    'success'
+                                );
+                            },
+                            error: function () {
+                                 Swal.fire(
+                                    'Opps...',
+                                    'Something went wrong please try again later!',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+
+                });
+            });
+        });
+    </script>
+
+}

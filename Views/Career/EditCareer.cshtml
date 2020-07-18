@@ -1,0 +1,46 @@
+﻿@model SFA.Models.Career
+@{
+    ViewBag.Title = "EditCareer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- update -->
+<section class="g-bg-gray-light-v5" style="margin-top: 80px;">
+    <div class="container g-py-100">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-lg-5">
+                <div class="u-shadow-v21 g-bg-white rounded g-py-40 g-px-30">
+                    <header class="text-center mb-4">
+                        <h2 class="h2 g-color-black g-font-weight-600">Update Career</h2>
+                    </header>
+
+                    <!-- Update Career Form -->
+                    @using (Html.BeginForm("Update", "Career"))
+                    {
+
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="jop_Title" style="font-size: 15px;">Career Name:</label>
+                                @Html.TextBoxFor(l => l.Name, new { @class = "form-control", @placeholder = "Career name" })
+                                @Html.ValidationMessageFor(l => l.Name, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-6">
+                                @Html.HiddenFor(l => l.Id)
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-primary" style="text-align: center; width: 100%;">Update</button>
+                            </div>
+                            <div class="col-6">
+                                @Html.ActionLink("Cancel", "Index", "Career", null, new { @class = "btn btn-primary", @style = "text-align: center; width: 100%;" })
+                            </div>
+                        </div>
+                        <!-- End new job Form -->
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
